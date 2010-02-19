@@ -15,10 +15,24 @@ sub mobile {
     $self->{__jp_mobile} ||= Email::Address::JP::Mobile->new( scalar $self->header('From') );
 }
 
-sub force_decode_hook { 1 }
-sub decode_hook {
-    my ($self, $body) = @_;
-    $self->mobile->mail_encoding->decode($body);
+sub body_str {
+    my ($self, ) = @_;
+    if ( $self->mobile && $self->mobile->is_mobile ) {
+        my $carrier = $self->mobile->name eq 'EZweb' ? 'ezweb-auto' : $self->mobile->name;
+        my $charset = $self->{ct}{attributes}{charset};
+        if ( $charset ) {
+            my $encoding = Encode::find_encoding("x-$charset-$carrier");
+            if ( $encoding ) {
+                return Encode::decode($encoding, $self->body);
+            } else {
+                return Encode::decode($charset, $self->body);
+            }
+        } else {
+            return Encode::decode('iso-2022-jp', $self->body);
+        }
+    } else {
+        return $self->SUPER::body_str;
+    }
 }
 
 sub subject {
@@ -41,7 +55,7 @@ Email::MIME::Jp::Mobile -
     my $mail = Email::MIME::JP::Mobile->new($eml);
     say $mail->subject;
     my $bodynode = $mail->xpath_findnodes('//plain');
-    say $bodynode->body if $bodynode;
+    say $bodynode->body_str if $bodynode;
 
 
 =head1 DESCRIPTION
