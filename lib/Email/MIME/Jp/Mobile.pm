@@ -6,6 +6,7 @@ our $VERSION = '0.01';
 
 use base qw(Email::MIME);
 use Encode ();
+use Email::Simple;
 use Email::Address::JP::Mobile;
 
 
@@ -22,7 +23,7 @@ sub decode_hook {
 
 sub subject {
     my ($self, ) = @_;
-    my $subject = Email::Simple::header('Subject');
+    my $subject = $self->header_obj->header_raw('Subject');
     $self->mobile->mime_encoding->decode($subject);
 }
 
