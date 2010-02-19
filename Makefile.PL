@@ -1,7 +1,7 @@
 use inc::Module::Install;
 # use Module::Install::ReadmeFromPod;
-name 'Email-MIME-Jp-Mobile';
-all_from 'lib/Email/MIME/Jp/Mobile.pm';
+name 'Email-MIME-JP-Mobile';
+all_from 'lib/Email/MIME/JP/Mobile.pm';
 # readme_from 'lib/Email/MIME/Jp/Mobile.pm';
 
 # requires '';

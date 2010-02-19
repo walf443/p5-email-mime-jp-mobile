@@ -1,4 +1,4 @@
-package Email::MIME::Jp::Mobile;
+package Email::MIME::JP::Mobile;
 
 use strict;
 use warnings;
@@ -46,7 +46,7 @@ __END__
 
 =head1 NAME
 
-Email::MIME::Jp::Mobile -
+Email::MIME::JP::Mobile -
 
 =head1 SYNOPSIS
 
@@ -60,7 +60,7 @@ Email::MIME::Jp::Mobile -
 
 =head1 DESCRIPTION
 
-Email::MIME::Jp::Mobile is
+Email::MIME::JP::Mobile is
 
 =head1 AUTHOR
 
