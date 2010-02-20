@@ -44,9 +44,11 @@ sub subject {
 1;
 __END__
 
+=encoding utf-8
+
 =head1 NAME
 
-Email::MIME::JP::Mobile -
+Email::MIME::JP::Mobile - handle email for japanese mobile carrier.
 
 =head1 SYNOPSIS
 
@@ -60,14 +62,35 @@ Email::MIME::JP::Mobile -
 
 =head1 DESCRIPTION
 
-Email::MIME::JP::Mobile is
+Email::MIME::JP::MobileはEmail::MIMEのwrapperで同様のインターフェースでutf8フラグを立てた状態でsubjectあるいはbody_strを扱えます。
+
+各キャリアの仕様の関係上で、絵文字が抜きだせるのはEzwebとウィルコム端末だけです。
+
+今のところ受信向けでしかあまり使っていなくて、送信については特に検証はしてないです。
+
+あまり関係ないですが、添付画像を抜きだりするときにDoCoMoとかだとうまくいかないケースがあるらしいので、Email::MIME::XPathを使うのがよいらしいです。
+http://mobilehacker.g.hatena.ne.jp/tomi-ru/20080711/1215788914
+
+現在の段階では、動かすためにはcpanに存在しない以下のモジュールが必要です。
+
+Encode::JP::Mobile ( 通常版とは違うので注意 )
+ http://svn.coderepos.org/share/lang/perl/Encode-JP-Mobile/branches/mime
+
+Email::Address::JP::Mobile
+http://svn.coderepos.org/share/lang/perl/Email-Address-JP-Mobile/trunk
 
 =head1 AUTHOR
 
 Tokuhiro Matsuno <tokuhirom {at} gmail.com>
 Keiji Yoshimi E<lt>walf443 at gmail dot comE<gt>
 
+=head1 THANKS
+
+Naoki Tomita (tomi-ru)
+
 =head1 SEE ALSO
+
++<Email::MIME>, +<Email::Address::JP::Mobile>, +<Encode::JP::Mobile>, +<Email::MIME::XPath>
 
 =head1 LICENSE
 
