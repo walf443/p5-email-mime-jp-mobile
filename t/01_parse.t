@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use Test::More;
 use Test::Base;
-use Email::MIME::Jp::Mobile;
+use Email::MIME::JP::Mobile;
 use Email::MIME::XPath;
 use Encode;
 use Devel::Peek;
@@ -26,7 +26,7 @@ run {
         do { local $/ = undef; $eml = <$io>; };
         close $io;
 
-        my $mail = Email::MIME::Jp::Mobile->new($eml);
+        my $mail = Email::MIME::JP::Mobile->new($eml);
         is($mail->subject, $block->subject, "subject ok")
             or diag(Dump($mail->subject));
 
