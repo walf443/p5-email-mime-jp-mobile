@@ -35,10 +35,15 @@ sub body_str {
     }
 }
 
+sub header_str {
+    my ($self, $header) = @_;
+    my $header_raw = $self->header_obj->header_raw($header);
+    $self->mobile->mime_encoding->decode($header_raw);
+}
+
 sub subject {
     my ($self, ) = @_;
-    my $subject = $self->header_obj->header_raw('Subject');
-    $self->mobile->mime_encoding->decode($subject);
+    return $self->header_str('Subject');
 }
 
 1;
