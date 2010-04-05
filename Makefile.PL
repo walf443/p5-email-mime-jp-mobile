@@ -1,8 +1,10 @@
+sub readme_from { warn "Module::Install::ReadmeFromPod is not installed?" }
 use inc::Module::Install;
-# use Module::Install::ReadmeFromPod;
+
+use Module::Install::ReadmeFromPod;
 name 'Email-MIME-JP-Mobile';
 all_from 'lib/Email/MIME/JP/Mobile.pm';
-# readme_from 'lib/Email/MIME/Jp/Mobile.pm';
+readme_from 'lib/Email/MIME/JP/Mobile.pm';
 
 # requires '';
 

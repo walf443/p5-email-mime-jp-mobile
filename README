@@ -1,0 +1,46 @@
+NAME
+    Email::MIME::JP::Mobile - handle email for japanese mobile carrier.
+
+SYNOPSIS
+        use Email::MIME::JP::Mobile;
+        use Email::MIME::XPath;
+        my $mail = Email::MIME::JP::Mobile->new($eml);
+        say $mail->subject;
+        my $bodynode = $mail->xpath_findnodes('//plain');
+        say $bodynode->body_str if $bodynode;
+
+DESCRIPTION
+    Email::MIME::JP::MobileはEmail::MIMEのwrapperで同様のインターフェースでutf8フラグを立てた状態でsu
+    bjectあるいはbody_strを扱えます。
+
+    各キャリアの仕様の関係上で、絵文字が抜きだせるのはEzwebとウィルコム端末だけです。
+
+    今のところ受信向けでしかあまり使っていなくて、送信については特に検証はしてないです。
+
+    あまり関係ないですが、添付画像を抜きだりするときにDoCoMoとかだとうまくいかないケースがあるらしいので、Email::MIME::XPath
+    を使うのがよいらしいです。
+    http://mobilehacker.g.hatena.ne.jp/tomi-ru/20080711/1215788914
+
+    現在の段階では、動かすためにはcpanに存在しない以下のモジュールが必要です。
+
+    Encode::JP::Mobile ( 通常版とは違うので注意 )
+    http://svn.coderepos.org/share/lang/perl/Encode-JP-Mobile/branches/mime
+
+    Email::Address::JP::Mobile
+    http://svn.coderepos.org/share/lang/perl/Email-Address-JP-Mobile/trunk
+
+AUTHOR
+    Tokuhiro Matsuno <tokuhirom {at} gmail.com> Keiji Yoshimi <walf443 at
+    gmail dot com>
+
+THANKS
+    Naoki Tomita (tomi-ru)
+
+SEE ALSO
+    +<Email::MIME>, +<Email::Address::JP::Mobile>, +<Encode::JP::Mobile>,
+    +<Email::MIME::XPath>
+
+LICENSE
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
